@@ -8,7 +8,7 @@ if __name__ == '__main__':
         "b": 4
     }))
 
-    print(Calculator.static_eval('^|-16 * (2+10)%2 + 14%(2 + a) - b|^', {
+    print(Calculator.static_eval('-^|-16 * (2+10)%2 + 14%(2 + a) - b|^', {
         "a": 5,
         "b": 4
     }))

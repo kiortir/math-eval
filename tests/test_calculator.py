@@ -29,4 +29,4 @@ class TestCalculator:
         assert Calculator.static_eval('^|-16 * (2+10)%2 + 14%(2 + a) - b|^', {
             'a': 5,
             'b': 4
-        }) == -4.0
+        }) == 4.0
