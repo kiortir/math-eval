@@ -23,6 +23,6 @@ class TokenizerMixin:
             return Operator.operators.get(token) or Parenthesis.parenthesis_list.get(token) or Variable(token, self)
 
     def tokenize(self, string: str):
-        parsed_tokens = self.__TOKENS.findall(string)
-        tokens = [self.__get_class(token) for token in parsed_tokens]
+        parsed_tokens = self.__TOKENS.finditer(string)
+        tokens = [self.__get_class(token.group()) for token in parsed_tokens]
         return tokens
