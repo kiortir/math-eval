@@ -26,7 +26,7 @@ class TestCalculator:
         assert Calculator.static_eval('10 ** 10') == 10000000000
 
     def test_expressions(self):
-        assert Calculator.static_eval('^|-16 * (2+10)%2 + 14%(2 + a) - b|^', {
+        assert Calculator.static_eval('-^|-16 * (2+10)%2 + 14%(2 + a) - b|^', {
             'a': 5,
             'b': 4
         }) == 4.0
