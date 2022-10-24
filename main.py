@@ -1,14 +1,16 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from typing import Union
 from parenthesis import Parenthesis
 from operators import Operator
+from terms import Term, Variable
 from tokenizer import TokenizerMixin
 
 
 class Node:
 
-    def __init__(self, value, left_child: Node = None, right_child: Node = None) -> None:
+    def __init__(self, value: Union[Parenthesis, Operator, Term, Variable], left_child: Node = None, right_child: Node = None) -> None:
         self.val = value
         self.lch = left_child
         self.rch = right_child
@@ -24,7 +26,6 @@ class Node:
         lch_value = self.lch.exec() if self.lch else None
         rch_value = self.rch.exec() if self.rch else None
         return self.val.exec(lch_value, rch_value)
-
 
 
 class Calculator(TokenizerMixin):
@@ -55,7 +56,8 @@ class Calculator(TokenizerMixin):
                             sub,
                             None
                         )
-                    subbed_operrators = [operator for operator in tokens[previous_idx:idx+1] if isinstance(operator, Operator)]
+                    subbed_operrators = [
+                        operator for operator in tokens[previous_idx:idx+1] if isinstance(operator, Operator)]
                     tokens = tokens[:previous_idx] + [sub] + tokens[idx+1:]
                     for operator in subbed_operrators:
                         operators_map[operator] -= 1
@@ -92,7 +94,7 @@ class Calculator(TokenizerMixin):
         return tokens[0]
 
     def eval(self, scope=None):
-        self.scope=scope
+        self.scope = scope
         result = self.tree.exec()
         self.scope = None
 
