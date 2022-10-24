@@ -41,8 +41,7 @@ class Operator:
 
 Operator(sign='+', priority=1, u_function=lambda x: abs(x),
          b_function=lambda x, y: x+y)
-Operator(sign='-', priority=1, u_function=lambda x: -
-         abs(x), b_function=lambda x, y: x-y)
+Operator(sign='-', priority=1, u_function=lambda x: x * -1, b_function=lambda x, y: x-y)
 Operator(sign='*', priority=5, b_function=lambda x, y: x*y)
 Operator(sign='/', priority=5, b_function=lambda x, y: x/y)
 Operator(sign='%', priority=7, b_function=lambda x, y: x % y)
